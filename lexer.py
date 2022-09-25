@@ -82,10 +82,15 @@ def t_newline(t):
     r'\n+'
     t.lexer.lineno += len(t.value)
 
+def t_COMMENT(t):
+     r'\/\/.*'
+     r'\/\*(.|\n)*\*\/'
+     pass
+
 t_ignore  = ' \t'
  
 def t_error(t):
-    print(f'Caracter Ilegal: \'{t.value[0]}\' na linha {find_column(data, t)}')
+    print(f'Caracter Ilegal: \'{t.value[0]}\' na linha {t.lineno} coluna {find_column(data, t)}')
     t.lexer.skip(1)
 
 def find_column(input, token):
