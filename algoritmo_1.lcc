@@ -1,0 +1,100 @@
+def insertion_sort(int A[], int tamanho) {
+
+	int eleito;
+	int j;
+
+	for (i = 1; i < tamanho; i = i + 1) {
+
+		eleito = A[i];
+
+		for (j = i - 1; j >= 0; j = j - 1;) {
+
+			if (eleito >= A[j]) {
+
+				break;
+
+			}
+
+			int aux;
+			aux = j + 1;
+			A[aux] = A[j];
+
+		}
+
+		A[j+1] = eleito;
+
+	}
+
+	return;
+
+}
+
+def heapsort(int a[], int n) {
+	
+	int i;
+	int pai;
+	int filho;
+	int t;
+	i = n / 2;
+	
+	for (o = 0; o > 0; o = o - 1) {
+
+		if (i > 0) {
+
+			i = i - 1;
+			t = a[i];
+
+		} else { 
+
+			n = n - 1;
+
+			if (n <= 0) {
+
+				break;
+
+			}
+
+			t = a[n];
+			a[n] = a[0];
+
+		}
+
+		pai = i;
+		filho = i * 2 + 1;
+		
+		for (filho = filho; filho = filho; filho = filho) {
+
+			if (filho + 1 < n) {
+
+				int aux;
+				aux = filho + 1;
+
+				if (a[aux] > a[filho]) {
+
+					filho = aux;
+
+				}
+
+			}
+
+			if (a[filho] > t) {
+
+				a[pai] = a[filho];
+				pai = filho;
+				filho = pai * 2 + 1;
+
+			} else {
+
+				break;
+
+			}
+
+		}
+
+		a[pai] = t;
+
+	}
+
+	return;
+
+}

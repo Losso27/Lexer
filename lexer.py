@@ -50,6 +50,7 @@ tokens = [
     'EQUAL',
     'FLOATCONST',
     'SEMICOLON',
+    'COLON',
         ] + list(reserved.values())
 
 t_PLUS          = r'\+'
@@ -66,6 +67,7 @@ t_RBRACKET      = r'\]'
 t_COMPARISON    = r'<|>|==|!=|<=|>='
 t_EQUAL         = r'='
 t_SEMICOLON     = r';'
+t_COLON     = r','
 t_STRINGCONST   = r'"+.+"'
 t_FLOATCONST    = r'\d+\.\d+'
 t_INTCONST      = r'\d+'

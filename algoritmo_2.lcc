@@ -1,0 +1,107 @@
+def fibonacci(int n) {
+
+	int i;
+	int a;
+	int b;
+	int aux;
+
+	a = 1;
+	b = 1;
+	
+	if (n > 2) {
+		for (i = 0; i < (n - 2); i = i + 1) {
+			aux = b;
+			b = a + b;
+			a = aux;
+		}
+	}
+	
+	print(b);
+
+	return;
+	
+}
+
+multmatrix (float a[ax][ay], int ax, int ay, float b[bx][by], int bx, int by) {
+	
+	if (ay != bx) {
+
+		print("Não é possível multiplicar essas matrizes");
+		return;	
+
+	}
+
+	float c[ax][by];
+	
+	int i;
+	int o;
+	int p;
+	int aux;
+
+	for (i = 0; i < ax; i = i + 1) {
+
+		for (o = 0; o < by; o = o + 1) {
+
+			aux = 0;
+
+			for (p = 0; p < ay; p = p + 1) {
+				aux = aux + a[i][p] + b[p][o];
+			}
+
+			c[i][o] = aux;
+
+			print(c[i][o]);
+			print(" ");
+
+		}
+		
+		print("\n")
+
+	}
+
+	return;
+	
+}
+
+def bhaskara (float a, float b, float c) {
+	
+	float delta;
+	float x1;
+	float x2;
+	float raiz;
+	raiz = 1;
+	float aux;
+
+	delta = b*b - 4*a*c;
+
+	if (delta < 0) {
+		print("Sem raízes reais");
+		return;
+	}
+	
+	int i;
+	for (i = 0; i == 0; i = i) {
+		
+		aux = raiz*raiz - delta;
+		
+		if (aux < 0) {
+			aux = aux*-1;
+		}
+		
+		if (aux =< 0.000001) {
+			break;
+		}
+		
+		raiz = (raiz + (delta / raiz)) / 2;
+
+	}
+	
+	x1 = (-b + raiz) / 2*a;
+	x1 = (-b - raiz) / 2*a;
+
+	print(x1);
+	print(" ");
+	print(x2);
+	
+	return;
+}
