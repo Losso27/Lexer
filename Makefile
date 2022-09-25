@@ -1,9 +1,9 @@
 VENV = venv
-PYTHON = $(VENV)/bin/python
+PYTHON = $(VENV)/bin/python3
 PIP = $(VENV)/bin/pip
 
 $(VENV)/bin/activate: requirements.txt
-	python -m venv $(VENV)
+	python3 -m venv $(VENV)
 	$(PIP) install -r requirements.txt
 
 clean:
