@@ -22,7 +22,7 @@ def fibonacci(int n) {
 	
 }
 
-multmatrix (float a[ax][ay], int ax, int ay, float b[bx][by], int bx, int by) {
+def multmatrix (float a, int ax, int ay, float b, int bx, int by) {
 	
 	if (ay != bx) {
 
@@ -31,7 +31,7 @@ multmatrix (float a[ax][ay], int ax, int ay, float b[bx][by], int bx, int by) {
 
 	}
 
-	float c[ax][by];
+	float c[1][1];
 	
 	int i;
 	int o;
@@ -51,11 +51,11 @@ multmatrix (float a[ax][ay], int ax, int ay, float b[bx][by], int bx, int by) {
 			c[i][o] = aux;
 
 			print(c[i][o]);
-			print(" ");
+			print " ";
 
 		}
 		
-		print("\n")
+		print "\n";
 
 	}
 
@@ -88,7 +88,7 @@ def bhaskara (float a, float b, float c) {
 			aux = aux*-1;
 		}
 		
-		if (aux =< 0.000001) {
+		if (aux <= 0.000001) {
 			break;
 		}
 		

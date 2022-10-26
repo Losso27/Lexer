@@ -1,0 +1,12 @@
+def y (int y){
+  float x;
+  float z;
+  int i;
+  int max;
+  x = 0;
+  max = 10000;
+  print x;
+  return;
+  if (x == 2) y = 0; else x = 0;
+  A[i + 1] = 0;
+}

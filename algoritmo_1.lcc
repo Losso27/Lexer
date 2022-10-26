@@ -1,4 +1,4 @@
-def insertion_sort(int A[], int tamanho) {
+def insertion_sort(int[][][] A, int tamanho) {
 
 	int eleito;
 	int j;
@@ -7,7 +7,7 @@ def insertion_sort(int A[], int tamanho) {
 
 		eleito = A[i];
 
-		for (j = i - 1; j >= 0; j = j - 1;) {
+		for (j = i - 1; j >= 0; j = j - 1) {
 
 			if (eleito >= A[j]) {
 
@@ -29,7 +29,7 @@ def insertion_sort(int A[], int tamanho) {
 
 }
 
-def heapsort(int a[], int n) {
+def heapsort(int a, int n) {
 	
 	int i;
 	int pai;
@@ -62,7 +62,7 @@ def heapsort(int a[], int n) {
 		pai = i;
 		filho = i * 2 + 1;
 		
-		for (filho = filho; filho = filho; filho = filho) {
+		for (filho = filho; filho == filho; filho = filho) {
 
 			if (filho + 1 < n) {
 
