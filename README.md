@@ -9,4 +9,4 @@ então rodar o Makefile para configurar
 
 e para rodar o programa 
 
-    python lexer.py {arquivo para rodar}
+    python parser.py {arquivo para rodar}

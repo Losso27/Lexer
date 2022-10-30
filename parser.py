@@ -262,9 +262,7 @@ def p_error(p):
         print(f'Token inesperado: \'{p.value}\' na linha {p.lineno}')
     else :
         print(f'Token inesperado: epsilon na linha {p.lineno}')
-
-def error_handler(p):
-    error_production_list.insert(0, p)
+    sys.exit()
 
 # Tratamento de erro
 def t_error(t):
@@ -279,8 +277,5 @@ def find_column(input, token):
 lexer = lex.lex()
 parser = yacc.yacc()
 parser.defaulted_states = {}
-
-parser.parse(data)
-
-for (p, t) in zip(error_production_list, error_token_list):
-    print(f'Erro: token inesperado \'{t}\' na produção {p}')
+r = parser.parse(data)
+print("Programa compilado com sucesso!")
