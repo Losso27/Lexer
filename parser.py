@@ -10,7 +10,7 @@ from prettytable import PrettyTable
 import ply.yacc as yacc
 import sys
 
-#Tabelas de saidas
+# Tabelas de saidas
 symbolTable = PrettyTable()
 symbolTable.title = "Tabela de Símbolos"
 symbolTable.field_names = ["Valor", "Linha", "Posição"]
@@ -99,6 +99,7 @@ t_ignore  = ' \t'
 error_token_list = []
 error_production_list = []
 
+# Regras gramaticais
 def p_program(p):
     '''program : statement
                | funclist
@@ -257,6 +258,7 @@ def p_epsilon(p):
     'epsilon :'
     pass
 
+# Tratamento de erro sintatico 
 def p_error(p):
     if p:
         print(f'Token inesperado: \'{p.value}\' na linha {p.lineno}')
@@ -264,7 +266,7 @@ def p_error(p):
         print(f'Token inesperado: epsilon na linha {p.lineno}')
     sys.exit()
 
-# Tratamento de erro
+# Tratamento de erro lexico
 def t_error(t):
     print(f'Caracter Ilegal: \'{t.value[0]}\' na linha {t.lineno} coluna {find_column(data, t)}')
     t.lexer.skip(1)

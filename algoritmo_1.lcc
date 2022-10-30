@@ -1,4 +1,4 @@
-def insertion_sort(int[][][] A, int tamanho) {
+def insertion_sort(int[] A, int tamanho) {
 
 	int eleito;
 	int j;
