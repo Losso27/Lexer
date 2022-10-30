@@ -9,7 +9,7 @@ Rule 3     program -> epsilon
 Rule 4     funclist -> funcdef funclistaux
 Rule 5     funclistaux -> funclist
 Rule 6     funclistaux -> epsilon
-Rule 7     funcdef -> DEF IDENT LPAREN paramlist RPAREN LBRACE statelist RBRACE
+Rule 7     funcdef -> DEF IDENTF LPAREN paramlist RPAREN LBRACE statelist RBRACE
 Rule 8     paramlist -> type IDENT paramlistaux
 Rule 9     paramlist -> epsilon
 Rule 10    paramlistaux -> COLON paramlist
@@ -38,7 +38,7 @@ Rule 32    atribstat -> lvalue EQUAL atribstat2
 Rule 33    atribstat2 -> expression
 Rule 34    atribstat2 -> allocexpression
 Rule 35    atribstat2 -> funccall
-Rule 36    funccall -> IDENT LPAREN paramlistcall RPAREN
+Rule 36    funccall -> IDENTF LPAREN paramlistcall RPAREN
 Rule 37    paramlistcall -> IDENT paramlistcallaux
 Rule 38    paramlistcall -> epsilon
 Rule 39    paramlistcallaux -> COLON paramlistcall
@@ -90,7 +90,8 @@ EQUAL                : 32
 FLOAT                : 70
 FLOATCONST           : 60
 FOR                  : 25
-IDENT                : 7 8 36 37 64 65
+IDENT                : 8 37 64 65
+IDENTF               : 7 36
 IF                   : 26
 INT                  : 69
 INTCONST             : 58 68
@@ -183,7 +184,7 @@ state 0
     (29) returnstat -> . RETURN
     (26) ifstat -> . IF LPAREN expression RPAREN statement ifstataux
     (25) forstat -> . FOR LPAREN atribstat SEMICOLON expression SEMICOLON atribstat RPAREN
-    (7) funcdef -> . DEF IDENT LPAREN paramlist RPAREN LBRACE statelist RBRACE
+    (7) funcdef -> . DEF IDENTF LPAREN paramlist RPAREN LBRACE statelist RBRACE
     (69) type -> . INT typeaux
     (70) type -> . FLOAT typeaux
     (71) type -> . STRING typeaux
@@ -409,7 +410,7 @@ state 15
     (6) funclistaux -> . epsilon
     (4) funclist -> . funcdef funclistaux
     (75) epsilon -> .
-    (7) funcdef -> . DEF IDENT LPAREN paramlist RPAREN LBRACE statelist RBRACE
+    (7) funcdef -> . DEF IDENTF LPAREN paramlist RPAREN LBRACE statelist RBRACE
 
     $end            reduce using rule 75 (epsilon -> .)
     DEF             shift and go to state 24
@@ -539,9 +540,9 @@ state 23
 
 state 24
 
-    (7) funcdef -> DEF . IDENT LPAREN paramlist RPAREN LBRACE statelist RBRACE
+    (7) funcdef -> DEF . IDENTF LPAREN paramlist RPAREN LBRACE statelist RBRACE
 
-    IDENT           shift and go to state 60
+    IDENTF          shift and go to state 60
 
 
 state 25
@@ -906,7 +907,7 @@ state 44
     (35) atribstat2 -> . funccall
     (42) expression -> . numexpression expressionaux
     (41) allocexpression -> . NEW type numexpressionvectoraux
-    (36) funccall -> . IDENT LPAREN paramlistcall RPAREN
+    (36) funccall -> . IDENTF LPAREN paramlistcall RPAREN
     (48) numexpression -> . term numexpressionaux
     (52) term -> . unaryexpr termaux
     (56) unaryexpr -> . SIGNAL factor
@@ -920,13 +921,14 @@ state 44
     (64) lvalue -> . IDENT numexpressionvectoraux
 
     NEW             shift and go to state 80
-    IDENT           shift and go to state 81
+    IDENTF          shift and go to state 81
     SIGNAL          shift and go to state 49
     INTCONST        shift and go to state 51
     STRINGCONST     shift and go to state 52
     FLOATCONST      shift and go to state 53
     NULL            shift and go to state 54
     LPAREN          shift and go to state 56
+    IDENT           shift and go to state 17
 
     lvalue                         shift and go to state 55
     atribstat2                     shift and go to state 76
@@ -1169,7 +1171,7 @@ state 59
 
 state 60
 
-    (7) funcdef -> DEF IDENT . LPAREN paramlist RPAREN LBRACE statelist RBRACE
+    (7) funcdef -> DEF IDENTF . LPAREN paramlist RPAREN LBRACE statelist RBRACE
 
     LPAREN          shift and go to state 97
 
@@ -1355,24 +1357,10 @@ state 80
 
 state 81
 
-    (36) funccall -> IDENT . LPAREN paramlistcall RPAREN
-    (64) lvalue -> IDENT . numexpressionvectoraux
-    (46) numexpressionvectoraux -> . numexpressionvector
-    (47) numexpressionvectoraux -> . epsilon
-    (45) numexpressionvector -> . LBRACKET numexpression RBRACKET numexpressionvectoraux
-    (75) epsilon -> .
+    (36) funccall -> IDENTF . LPAREN paramlistcall RPAREN
 
     LPAREN          shift and go to state 102
-    LBRACKET        shift and go to state 43
-    MATH            reduce using rule 75 (epsilon -> .)
-    SIGNAL          reduce using rule 75 (epsilon -> .)
-    COMPARISON      reduce using rule 75 (epsilon -> .)
-    SEMICOLON       reduce using rule 75 (epsilon -> .)
-    RPAREN          reduce using rule 75 (epsilon -> .)
 
-    numexpressionvectoraux         shift and go to state 40
-    numexpressionvector            shift and go to state 41
-    epsilon                        shift and go to state 42
 
 state 82
 
@@ -1569,7 +1557,7 @@ state 96
 
 state 97
 
-    (7) funcdef -> DEF IDENT LPAREN . paramlist RPAREN LBRACE statelist RBRACE
+    (7) funcdef -> DEF IDENTF LPAREN . paramlist RPAREN LBRACE statelist RBRACE
     (8) paramlist -> . type IDENT paramlistaux
     (9) paramlist -> . epsilon
     (69) type -> . INT typeaux
@@ -1652,15 +1640,15 @@ state 101
 
 state 102
 
-    (36) funccall -> IDENT LPAREN . paramlistcall RPAREN
+    (36) funccall -> IDENTF LPAREN . paramlistcall RPAREN
     (37) paramlistcall -> . IDENT paramlistcallaux
     (38) paramlistcall -> . epsilon
     (75) epsilon -> .
 
-    IDENT           shift and go to state 116
+    IDENT           shift and go to state 117
     RPAREN          reduce using rule 75 (epsilon -> .)
 
-    paramlistcall                  shift and go to state 117
+    paramlistcall                  shift and go to state 116
     epsilon                        shift and go to state 118
 
 state 103
@@ -1802,7 +1790,7 @@ state 108
 
 state 109
 
-    (7) funcdef -> DEF IDENT LPAREN paramlist . RPAREN LBRACE statelist RBRACE
+    (7) funcdef -> DEF IDENTF LPAREN paramlist . RPAREN LBRACE statelist RBRACE
 
     RPAREN          shift and go to state 123
 
@@ -1869,23 +1857,23 @@ state 115
 
 state 116
 
+    (36) funccall -> IDENTF LPAREN paramlistcall . RPAREN
+
+    RPAREN          shift and go to state 126
+
+
+state 117
+
     (37) paramlistcall -> IDENT . paramlistcallaux
     (39) paramlistcallaux -> . COLON paramlistcall
     (40) paramlistcallaux -> . epsilon
     (75) epsilon -> .
 
-    COLON           shift and go to state 127
+    COLON           shift and go to state 128
     RPAREN          reduce using rule 75 (epsilon -> .)
 
-    paramlistcallaux               shift and go to state 126
-    epsilon                        shift and go to state 128
-
-state 117
-
-    (36) funccall -> IDENT LPAREN paramlistcall . RPAREN
-
-    RPAREN          shift and go to state 129
-
+    paramlistcallaux               shift and go to state 127
+    epsilon                        shift and go to state 129
 
 state 118
 
@@ -1953,7 +1941,7 @@ state 122
 
 state 123
 
-    (7) funcdef -> DEF IDENT LPAREN paramlist RPAREN . LBRACE statelist RBRACE
+    (7) funcdef -> DEF IDENTF LPAREN paramlist RPAREN . LBRACE statelist RBRACE
 
     LBRACE          shift and go to state 134
 
@@ -1980,37 +1968,37 @@ state 125
 
 state 126
 
+    (36) funccall -> IDENTF LPAREN paramlistcall RPAREN .
+
+    SEMICOLON       reduce using rule 36 (funccall -> IDENTF LPAREN paramlistcall RPAREN .)
+    RPAREN          reduce using rule 36 (funccall -> IDENTF LPAREN paramlistcall RPAREN .)
+
+
+state 127
+
     (37) paramlistcall -> IDENT paramlistcallaux .
 
     RPAREN          reduce using rule 37 (paramlistcall -> IDENT paramlistcallaux .)
 
 
-state 127
+state 128
 
     (39) paramlistcallaux -> COLON . paramlistcall
     (37) paramlistcall -> . IDENT paramlistcallaux
     (38) paramlistcall -> . epsilon
     (75) epsilon -> .
 
-    IDENT           shift and go to state 116
+    IDENT           shift and go to state 117
     RPAREN          reduce using rule 75 (epsilon -> .)
 
     paramlistcall                  shift and go to state 138
     epsilon                        shift and go to state 118
 
-state 128
+state 129
 
     (40) paramlistcallaux -> epsilon .
 
     RPAREN          reduce using rule 40 (paramlistcallaux -> epsilon .)
-
-
-state 129
-
-    (36) funccall -> IDENT LPAREN paramlistcall RPAREN .
-
-    SEMICOLON       reduce using rule 36 (funccall -> IDENT LPAREN paramlistcall RPAREN .)
-    RPAREN          reduce using rule 36 (funccall -> IDENT LPAREN paramlistcall RPAREN .)
 
 
 state 130
@@ -2117,7 +2105,7 @@ state 133
 
 state 134
 
-    (7) funcdef -> DEF IDENT LPAREN paramlist RPAREN LBRACE . statelist RBRACE
+    (7) funcdef -> DEF IDENTF LPAREN paramlist RPAREN LBRACE . statelist RBRACE
     (12) statelist -> . statement statelistaux
     (15) statement -> . vardecl SEMICOLON
     (16) statement -> . atribstat SEMICOLON
@@ -2236,7 +2224,7 @@ state 140
 
 state 141
 
-    (7) funcdef -> DEF IDENT LPAREN paramlist RPAREN LBRACE statelist . RBRACE
+    (7) funcdef -> DEF IDENTF LPAREN paramlist RPAREN LBRACE statelist . RBRACE
 
     RBRACE          shift and go to state 144
 
@@ -2271,10 +2259,10 @@ state 143
 
 state 144
 
-    (7) funcdef -> DEF IDENT LPAREN paramlist RPAREN LBRACE statelist RBRACE .
+    (7) funcdef -> DEF IDENTF LPAREN paramlist RPAREN LBRACE statelist RBRACE .
 
-    DEF             reduce using rule 7 (funcdef -> DEF IDENT LPAREN paramlist RPAREN LBRACE statelist RBRACE .)
-    $end            reduce using rule 7 (funcdef -> DEF IDENT LPAREN paramlist RPAREN LBRACE statelist RBRACE .)
+    DEF             reduce using rule 7 (funcdef -> DEF IDENTF LPAREN paramlist RPAREN LBRACE statelist RBRACE .)
+    $end            reduce using rule 7 (funcdef -> DEF IDENTF LPAREN paramlist RPAREN LBRACE statelist RBRACE .)
 
 WARNING: 
 WARNING: Conflicts:

@@ -43,6 +43,7 @@ reserved = {
 tokens = [
     'SIGNAL',
     'IDENT',
+    'IDENTF',
     'COMPARISON',
     'MATH',
     'LPAREN',
@@ -75,6 +76,12 @@ t_COLON         = r','
 t_STRINGCONST   = r'"+.+"'
 t_FLOATCONST    = r'\d+\.\d+'
 t_INTCONST      = r'\d+'
+
+# Regra para o token de ident
+def t_IDENTF(t):
+    r'@[_A-Za-z][a-zA-Z0-9_]*'
+    t.type = reserved.get(t.value, 'IDENTF')
+    return t
 
 # Regra para o token de ident
 def t_IDENT(t):
@@ -113,7 +120,7 @@ def p_funclistaux(p):
                    | epsilon'''
 
 def p_funcdef(p):
-    '''funcdef : DEF IDENT LPAREN paramlist RPAREN LBRACE statelist RBRACE'''
+    '''funcdef : DEF IDENTF LPAREN paramlist RPAREN LBRACE statelist RBRACE'''
 
 def p_paramlist(p):
     '''paramlist : type IDENT paramlistaux
@@ -170,7 +177,7 @@ def p_atribstat2(p):
                   | funccall'''
 
 def p_funccall(p):
-    '''funccall : IDENT LPAREN paramlistcall RPAREN'''
+    '''funccall : IDENTF LPAREN paramlistcall RPAREN'''
 
 def p_paramlistcall(p):
     '''paramlistcall : IDENT paramlistcallaux

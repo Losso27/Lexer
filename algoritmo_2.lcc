@@ -1,4 +1,4 @@
-def fibonacci(int n) {
+def @fibonacci(int n) {
 
 	int i;
 	int a;
@@ -22,7 +22,7 @@ def fibonacci(int n) {
 	
 }
 
-def multmatrix (float a, int ax, int ay, float b, int bx, int by) {
+def @multmatrix (float a, int ax, int ay, float b, int bx, int by) {
 	
 	if (ay != bx) {
 
@@ -63,7 +63,7 @@ def multmatrix (float a, int ax, int ay, float b, int bx, int by) {
 	
 }
 
-def bhaskara (float a, float b, float c) {
+def @bhaskara (float a, float b, float c) {
 	
 	float delta;
 	float x1;
