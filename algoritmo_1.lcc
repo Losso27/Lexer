@@ -1,4 +1,4 @@
-def insertion_sort(int[] A, int tamanho) {
+def @insertion_sort(int A, int tamanho) {
 
 	int eleito;
 	int j;
@@ -29,7 +29,7 @@ def insertion_sort(int[] A, int tamanho) {
 
 }
 
-def heapsort(int a, int n) {
+def @heapsort(int a, int n) {
 	
 	int i;
 	int pai;

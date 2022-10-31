@@ -250,16 +250,9 @@ def p_vardecl2(p):
     '''vardecl2 : LBRACKET INTCONST RBRACKET vardeclaux'''
 
 def p_type(p):
-    '''type : INT typeaux
-            | FLOAT typeaux 
-            | STRING typeaux'''
-
-def p_typeaux(p):
-    '''typeaux : type2
-               | epsilon'''
-
-def p_type2(p):
-    '''type2 : LBRACKET RBRACKET typeaux'''
+    '''type : INT
+            | FLOAT 
+            | STRING '''
 
 def p_epsilon(p):
     'epsilon :'
